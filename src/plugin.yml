@@ -1,0 +1,15 @@
+name: bColoredChat
+main: com.beecub.bColoredChat.bColoredChat
+version: 1.6.0
+author: beecub
+description: >
+             Chat Colors
+commands:
+  useColor:
+    description: Set player chat color
+    usage: |
+           /<command> [&black&|&darkblue&|&darkgreen&|&darkaqua&|&darkred&|&purple&|&gold&|&gray&|&darkgray&|&blue&|&green&|&aqua&|&red&|&pink&|&yellow&|&white&]
+  clearColor:
+    description: Remove player chat color
+    usage: |
+           /<command>
