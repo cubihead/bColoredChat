@@ -11,6 +11,7 @@ public class bConfigManager {
 	protected static bColoredChat bColoredChat;
     protected static Configuration conf;
     protected File confFile;
+    static boolean OPOnly;
     
     static List<String> userColor = new LinkedList<String>();
     
@@ -25,12 +26,12 @@ public class bConfigManager {
         if (f.exists())
         {
         	conf = new Configuration(f);
-        	conf.load();
-        	
+        	conf.load();        	
         }
         else {
         	this.confFile = new File(bColoredChat.getDataFolder(), "config.yml");
             this.conf = new Configuration(confFile);
+            conf.setProperty("Options.OPOnly", false);
             conf.save();
         }
         
@@ -38,6 +39,7 @@ public class bConfigManager {
     
 	void load() {
     	conf.load();
+    	OPOnly = conf.getBoolean("Options.OPOnly", false);
     }
 	
 	public void reload() {

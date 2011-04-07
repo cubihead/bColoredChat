@@ -16,21 +16,31 @@ public class bColoredChatPlayerListener extends PlayerListener {
 	public void onPlayerChat(PlayerChatEvent event) {
 		
 	Player player = event.getPlayer();
+	String message = event.getMessage();
 		
-		if (bColoredChat.permissions) {
-			if(bColoredChat.Permissions.permission(player, "bColoredChat.color")) {
-				String message = event.getMessage();
-				message = bConfigManager.getPlayerColor(player, message);
-				message = bChat.replaceColorCodes(message);
-				event.setMessage(message);
+		
+		if(bConfigManager.OPOnly) {
+			if(player.isOp()) {
+				colorMessage(event, player, message);
 			}
 		}
 		else {
-			String message = event.getMessage();
-			message = bConfigManager.getPlayerColor(player, message);
-			message = bChat.replaceColorCodes(message);
-			event.setMessage(message);
-		}		
+			if (bColoredChat.permissions) {
+				if(bColoredChat.Permissions.permission(player, "bColoredChat.chatColor")) {
+					colorMessage(event, player, message);
+				}
+			}
+			else {
+				colorMessage(event, player, message);
+			}
+		}
+	}
+	
+	// color up message
+	public void colorMessage(PlayerChatEvent event, Player player, String message) {
+		message = bConfigManager.getPlayerColor(player, message);
+		message = bChat.replaceColorCodes(message);
+		event.setMessage(message);
 	}
 }
 
