@@ -55,7 +55,7 @@ public class bChat {
 	
 	public static void broadcastMessage(String message) {
 		message = bChat.replaceColorCodes(message);
-		log.info( "[bInform] " + message);
+		log.info( "[bColoredChat] " + message);
 		server.broadcastMessage(message);
 	}
 	public static void sendMessageToPlayer(Player player, String message) {

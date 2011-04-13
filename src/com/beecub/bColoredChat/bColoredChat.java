@@ -4,7 +4,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
-import org.bukkit.event.Event.Priority;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
@@ -29,8 +28,8 @@ public class bColoredChat extends JavaPlugin {
 
 		pdfFile = this.getDescription();
 		PluginManager pm = getServer().getPluginManager();
-		pm.registerEvent(Event.Type.PLAYER_CHAT, playerListener, Priority.Low, this);
-	    pm.registerEvent(Event.Type.SIGN_CHANGE, signListener, Event.Priority.Monitor, this);
+		pm.registerEvent(Event.Type.PLAYER_CHAT, playerListener, Event.Priority.Lowest, this);
+	    pm.registerEvent(Event.Type.SIGN_CHANGE, signListener, Event.Priority.Lowest, this);
 
 		bConfigManager bConfigManager = new bConfigManager(this);
 		bConfigManager.load();
@@ -45,8 +44,7 @@ public class bColoredChat extends JavaPlugin {
 	public void onDisable() {
 		log.info("[" + pdfFile.getName() + "]" + " version " + pdfFile.getVersion() + " disabled!");
 	}
-	
-	
+		
 	
 	// setup permissions
 	private boolean setupPermissions() {
@@ -67,8 +65,7 @@ public class bColoredChat extends JavaPlugin {
 		}
 		return false;
 	}
-	
-	
+		
 	
 	// onCommand
 	@Override
