@@ -46,35 +46,87 @@ public class bConfigManager {
 		load();
 	}
 	
-	static String getPlayerColor(Player player, String message) {
-		if(com.beecub.bColoredChat.bColoredChat.Permissions.permission(player, "bColoredChat.useColor")) {
+	@SuppressWarnings("static-access")
+	static String getPlayerColor(Player sender, String message) {
+		boolean on = false;
+		if (bColoredChat.permissions) {
+			if(com.beecub.bColoredChat.bColoredChat.Permissions.permission(sender, "bColoredChat.useColor") || sender.isOp()) {
+				on = true;
+			}
+		}
+		else {
+			on = true;
+		}
+		
+		// do it?
+		if( on ) {
 			String color;
-			color = (String) conf.getProperty("playerColor." + player.getName() );
+			color = (String) conf.getProperty("playerColor." + sender.getName() );
 			if(color != null) {	
 				if(bChat.Colors.contains(color)) {
 					message = color + message;
 				}
-			}
-		}
+			}	
+		}	
 		return message;
 	}
 	
-	static boolean setPlayerColor(Player player, String color) {
-		if(com.beecub.bColoredChat.bColoredChat.Permissions.permission(player, "bColoredChat.useColor")) {
+	@SuppressWarnings("static-access")
+	static boolean setPlayerColor(Player sender, String color) {
+		boolean on = false;
+		if (bColoredChat.permissions) {
+			if(com.beecub.bColoredChat.bColoredChat.Permissions.permission(sender, "bColoredChat.useColor") || sender.isOp()) {
+				on = true;
+			} else {
+				bChat.sendMessageToPlayer(sender, "&6[bColoredChat] " + "You dont have permissions to this command.");
+				return true;
+			}
+		}
+		else {
+			on = true;
+		}
+		
+		// do it?
+		if( on ) {
 			if(bChat.Colors.contains(color)) {
-				conf.setProperty("playerColor." + player.getName(), color);
-				bChat.sendMessageToPlayer(player, "&6Sucessfully set color.");
+				conf.setProperty("playerColor." + sender.getName(), color);
+				bChat.sendMessageToPlayer(sender, "&6Sucessfully set color.");
 				return true;
 			}
 			return false;
-		} else {
-			bChat.sendMessageToPlayer(player, "&6[bColoredChat] " + "You dont have permissions to this command.");
-			return true;
 		}
+		return true;
 	}
 	
-	static void clearPlayerColor(Player player) {
-		conf.removeProperty("playerColor." + player.getName());
-		bChat.sendMessageToPlayer(player, "&6Sucessfully removed color.");
+	@SuppressWarnings("static-access")
+	static boolean setOtherPlayerColor(Player sender, String player, String color) {
+		boolean on = false;
+		if (bColoredChat.permissions) {
+			if(com.beecub.bColoredChat.bColoredChat.Permissions.permission(sender, "bColoredChat.setColor") || sender.isOp()) {
+				on = true;
+			} else {
+				bChat.sendMessageToPlayer(sender, "&6[bColoredChat] " + "You dont have permissions to this command.");
+				return true;
+			}
+		}
+		else {
+			on = true;
+		}
+		
+		// do it?
+		if( on ) {
+			if(bChat.Colors.contains(color)) {
+				conf.setProperty("playerColor." + sender.getName(), color);
+				bChat.sendMessageToPlayer(sender, "&6Sucessfully set color.");
+				return true;
+			}
+			return false;
+		}
+		return true;
+	}
+	
+	static void clearPlayerColor(Player sender) {
+		conf.removeProperty("playerColor." + sender.getName());
+		bChat.sendMessageToPlayer(sender, "&6Sucessfully removed color.");
 	}
 }

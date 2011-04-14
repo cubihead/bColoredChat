@@ -26,7 +26,7 @@ public class bColoredChatPlayerListener extends PlayerListener {
 		}
 		else {
 			if (bColoredChat.permissions) {
-				if(bColoredChat.Permissions.permission(player, "bColoredChat.chatColor")) {
+				if(bColoredChat.Permissions.permission(player, "bColoredChat.chatColor") || player.isOp()) {
 					colorMessage(event, player, message);
 				}
 			}

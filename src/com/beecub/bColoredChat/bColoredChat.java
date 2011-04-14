@@ -73,13 +73,25 @@ public class bColoredChat extends JavaPlugin {
 		
 		String command = c.getName().toLowerCase();
 		String parameter;
-	    // use Color
+		String setplayer;
+		
 		if(sender instanceof Player) {
 			Player player = (Player) sender;
-		    if((command.equals("usecolor"))) {
-		    	if(args.length > 0) {
+		    // use Color
+		    if(command.equals("usecolor")) {
+		    	if(args.length == 1) {
 		    		parameter = args[0];
 					if(bConfigManager.setPlayerColor(player, parameter)) {
+						return true;
+					}
+		    	}
+		    }
+		    // set Color
+		    else if(command.equals("setcolor")) {
+		    	if(args.length == 2) {
+		    		setplayer = args[0];
+		    		parameter = args[1];
+					if(bConfigManager.setOtherPlayerColor(player, setplayer, parameter)) {
 						return true;
 					}
 		    	}
