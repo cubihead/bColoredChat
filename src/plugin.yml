@@ -6,9 +6,13 @@ description: >
              Chat Colors
 commands:
   useColor:
-    description: Set player chat color
+    description: Set own chat color
     usage: |
            /<command> [&black&|&darkblue&|&darkgreen&|&darkaqua&|&darkred&|&purple&|&gold&|&gray&|&darkgray&|&blue&|&green&|&aqua&|&red&|&pink&|&yellow&|&white&]
+  setColor:
+    description: Set player chat color
+    usage: |
+           /<command> [name] [colorcode]
   clearColor:
     description: Remove player chat color
     usage: |

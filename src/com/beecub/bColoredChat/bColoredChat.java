@@ -81,7 +81,7 @@ public class bColoredChat extends JavaPlugin {
 		    if(command.equals("usecolor")) {
 		    	if(args.length == 1) {
 		    		parameter = args[0];
-					if(bConfigManager.setPlayerColor(player, parameter)) {
+					if(bConfigManager.setMyPlayerChatColor(player, parameter)) {
 						return true;
 					}
 		    	}
@@ -91,14 +91,21 @@ public class bColoredChat extends JavaPlugin {
 		    	if(args.length == 2) {
 		    		setplayer = args[0];
 		    		parameter = args[1];
-					if(bConfigManager.setOtherPlayerColor(player, setplayer, parameter)) {
+					if(bConfigManager.setOtherPlayerChatColor(player, setplayer, parameter)) {
 						return true;
 					}
 		    	}
 		    }
 		    // clear Color
 		    else if(command.equals("clearcolor")) {
-		    	bConfigManager.clearPlayerColor(player);
+		    	if(args.length == 0) {
+		    		bConfigManager.clearPlayerChatColor(player, player.getName());
+		    	}
+		    	else if(args.length == 1) {
+		    		parameter = args[1];
+		    		bConfigManager.clearPlayerChatColor(player, parameter);
+		    	}
+		    	
 		    }
 		} else {
 			bChat.sendMessageToServer("&6Cannot use this from console");

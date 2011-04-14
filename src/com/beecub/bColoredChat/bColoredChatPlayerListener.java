@@ -14,10 +14,9 @@ public class bColoredChatPlayerListener extends PlayerListener {
 	}
 	
 	public void onPlayerChat(PlayerChatEvent event) {
-		
+	
 	Player player = event.getPlayer();
 	String message = event.getMessage();
-		
 		
 		if(bConfigManager.OPOnly) {
 			if(player.isOp()) {
@@ -38,7 +37,7 @@ public class bColoredChatPlayerListener extends PlayerListener {
 	
 	// color up message
 	public void colorMessage(PlayerChatEvent event, Player player, String message) {
-		message = bConfigManager.getPlayerColor(player, message);
+		message = bConfigManager.getPlayerChatColor(player, message);
 		message = bChat.replaceColorCodes(message);
 		event.setMessage(message);
 	}

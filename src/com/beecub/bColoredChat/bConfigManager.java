@@ -34,7 +34,6 @@ public class bConfigManager {
             conf.setProperty("Options.OPOnly", false);
             conf.save();
         }
-        
     }    
     
 	void load() {
@@ -47,7 +46,7 @@ public class bConfigManager {
 	}
 	
 	@SuppressWarnings("static-access")
-	static String getPlayerColor(Player sender, String message) {
+	static String getPlayerChatColor(Player sender, String message) {
 		boolean on = false;
 		if (bColoredChat.permissions) {
 			if(com.beecub.bColoredChat.bColoredChat.Permissions.permission(sender, "bColoredChat.useColor") || sender.isOp()) {
@@ -72,7 +71,7 @@ public class bConfigManager {
 	}
 	
 	@SuppressWarnings("static-access")
-	static boolean setPlayerColor(Player sender, String color) {
+	static boolean setMyPlayerChatColor(Player sender, String color) {
 		boolean on = false;
 		if (bColoredChat.permissions) {
 			if(com.beecub.bColoredChat.bColoredChat.Permissions.permission(sender, "bColoredChat.useColor") || sender.isOp()) {
@@ -88,9 +87,7 @@ public class bConfigManager {
 		
 		// do it?
 		if( on ) {
-			if(bChat.Colors.contains(color)) {
-				conf.setProperty("playerColor." + sender.getName(), color);
-				bChat.sendMessageToPlayer(sender, "&6Sucessfully set color.");
+			if(setPlayerChatColor(sender, sender.getName(), color)) {
 				return true;
 			}
 			return false;
@@ -99,7 +96,7 @@ public class bConfigManager {
 	}
 	
 	@SuppressWarnings("static-access")
-	static boolean setOtherPlayerColor(Player sender, String player, String color) {
+	static boolean setOtherPlayerChatColor(Player sender, String player, String color) {
 		boolean on = false;
 		if (bColoredChat.permissions) {
 			if(com.beecub.bColoredChat.bColoredChat.Permissions.permission(sender, "bColoredChat.setColor") || sender.isOp()) {
@@ -115,9 +112,7 @@ public class bConfigManager {
 		
 		// do it?
 		if( on ) {
-			if(bChat.Colors.contains(color)) {
-				conf.setProperty("playerColor." + sender.getName(), color);
-				bChat.sendMessageToPlayer(sender, "&6Sucessfully set color.");
+			if(setPlayerChatColor(sender, player, color)) {
 				return true;
 			}
 			return false;
@@ -125,8 +120,20 @@ public class bConfigManager {
 		return true;
 	}
 	
-	static void clearPlayerColor(Player sender) {
-		conf.removeProperty("playerColor." + sender.getName());
+	
+	// set conf color
+	private static boolean setPlayerChatColor(Player sender, String player, String color) {
+		if(bChat.Colors.contains(color)) {
+			conf.setProperty("playerColor." + player, color);
+			bChat.sendMessageToPlayer(sender, "&6Sucessfully set color.");
+			return true;
+		}
+		return false;
+	}
+	
+	
+	static void clearPlayerChatColor(Player sender, String player) {
+		conf.removeProperty("playerColor." + player);
 		bChat.sendMessageToPlayer(sender, "&6Sucessfully removed color.");
 	}
 }
