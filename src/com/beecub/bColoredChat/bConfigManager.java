@@ -45,17 +45,10 @@ public class bConfigManager {
 		load();
 	}
 	
-	@SuppressWarnings("static-access")
 	static String getPlayerChatColor(Player sender, String message) {
 		boolean on = false;
-		if (bColoredChat.permissions) {
-			if(com.beecub.bColoredChat.bColoredChat.Permissions.permission(sender, "bColoredChat.useColor") || sender.isOp()) {
-				on = true;
-			}
-		}
-		else {
-			on = true;
-		}
+		
+		on = true;
 		
 		// do it?
 		if( on ) {

@@ -100,10 +100,12 @@ public class bColoredChat extends JavaPlugin {
 		    else if(command.equals("clearcolor")) {
 		    	if(args.length == 0) {
 		    		bConfigManager.clearPlayerChatColor(player, player.getName());
+		    		return true;
 		    	}
 		    	else if(args.length == 1) {
-		    		parameter = args[1];
+		    		parameter = args[0];
 		    		bConfigManager.clearPlayerChatColor(player, parameter);
+		    		return true;
 		    	}
 		    	
 		    }
