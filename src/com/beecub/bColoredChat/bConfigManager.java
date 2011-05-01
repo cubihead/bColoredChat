@@ -54,7 +54,7 @@ public class bConfigManager {
 		if( on ) {
 			String color;
 			color = (String) conf.getProperty("playerColor." + sender.getName() );
-			if(color != null) {	
+			if(color != null) {
 				if(bChat.Colors.contains(color)) {
 					message = color + message;
 				}
@@ -118,10 +118,14 @@ public class bConfigManager {
 	private static boolean setPlayerChatColor(Player sender, String player, String color) {
 		if(bChat.Colors.contains(color)) {
 			conf.setProperty("playerColor." + player, color);
+			conf.save();
 			bChat.sendMessageToPlayer(sender, "&6Sucessfully set color.");
 			return true;
 		}
-		return false;
+		else {
+		    bChat.sendMessageToPlayer(sender, "&6This is not a allowed color.");
+		    return false;
+		}
 	}
 	
 	

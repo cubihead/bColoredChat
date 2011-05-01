@@ -88,7 +88,13 @@ public class bColoredChat extends JavaPlugin {
 		    }
 		    // set Color
 		    else if(command.equals("setcolor")) {
-		    	if(args.length == 2) {
+		        if(args.length == 1) {
+                    parameter = args[0];
+                    if(bConfigManager.setOtherPlayerChatColor(player, player.getName(), parameter)) {
+                        return true;
+                    }
+                }
+		        else if(args.length == 2) {
 		    		setplayer = args[0];
 		    		parameter = args[1];
 					if(bConfigManager.setOtherPlayerChatColor(player, setplayer, parameter)) {
@@ -106,12 +112,68 @@ public class bColoredChat extends JavaPlugin {
 		    		parameter = args[0];
 		    		bConfigManager.clearPlayerChatColor(player, parameter);
 		    		return true;
-		    	}
-		    	
+		    	}		    	
 		    }
+		    // random Color
+            else if(command.equals("randomcolor")) {
+                String message = "";
+                boolean on = false;
+                if (bColoredChat.permissions) {
+                    if(Permissions.permission((Player) sender, "bColoredChat.randomColor") || sender.isOp()) {
+                        on = true;
+                    } else {
+                        bChat.sendMessageToCommandSender(sender, "&6[bColoredChat] " + "You dont have permissions to this command.");
+                        return true;
+                    }
+                }
+                else {
+                    on = true;
+                }
+                
+                // do it?
+                if( on ) {
+                    for(int i = 0; i < args.length; i++) {
+                        message += args[i] + " ";
+                    }
+                    message = bChat.replaceRandom(message);
+                    player = (Player) sender;
+                    player.chat(message);
+                    return true;
+                }
+                return false;
+            }
+		    // rainbow Color
+            else if(command.equals("rainbowcolor")) {
+                String message = "";
+                boolean on = false;
+                if (bColoredChat.permissions) {
+                    if(Permissions.permission((Player) sender, "bColoredChat.rainbowColor") || sender.isOp()) {
+                        on = true;
+                    } else {
+                        bChat.sendMessageToCommandSender(sender, "&6[bColoredChat] " + "You dont have permissions to this command.");
+                        return true;
+                    }
+                }
+                else {
+                    on = true;
+                }
+                
+                // do it?
+                if( on ) {
+                    for(int i = 0; i < args.length; i++) {
+                        message += args[i] + " ";
+                    }
+                    message = bChat.replaceRainbow(message);
+                    player = (Player) sender;
+                    player.chat(message);
+                    return true;
+                }
+                return false;
+            }
+		    return false;
 		} else {
 			bChat.sendMessageToServer("&6Cannot use this from console");
+			return true;
 		}
-		return false;
 	}
 }

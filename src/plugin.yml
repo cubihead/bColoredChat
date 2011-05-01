@@ -1,6 +1,6 @@
 name: bColoredChat
 main: com.beecub.bColoredChat.bColoredChat
-version: 1.9.1
+version: 2.0.0
 author: beecub
 description: >
              Chat Colors
@@ -16,4 +16,12 @@ commands:
   clearColor:
     description: Remove player chat color
     usage: |
-           /<command>
+           /<command> [name]
+  randomColor:
+    description: random text
+    usage: |
+           /<command> [text]
+  rainbowColor:
+    description: rainbow text
+    usage: |
+           /<command> [text]
