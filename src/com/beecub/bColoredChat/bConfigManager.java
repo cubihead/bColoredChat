@@ -132,5 +132,6 @@ public class bConfigManager {
 	static void clearPlayerChatColor(Player sender, String player) {
 		conf.removeProperty("playerColor." + player);
 		bChat.sendMessageToPlayer(sender, "&6Sucessfully removed color.");
+		conf.save();
 	}
 }

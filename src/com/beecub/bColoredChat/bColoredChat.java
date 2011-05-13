@@ -8,7 +8,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import com.nijiko.permissions.PermissionHandler;
 import com.nijikokun.bukkit.Permissions.Permissions;
 
@@ -39,7 +38,7 @@ public class bColoredChat extends JavaPlugin {
 		}
 		
 		PluginDescriptionFile pdfFile = this.getDescription();
-		log.info( "[" + pdfFile.getName() + "]" + " version " + pdfFile.getVersion() + " is enabled!" );
+		log.info("[" + pdfFile.getName() + "]" + " version " + pdfFile.getVersion() + " is enabled!" );
 	}
 	public void onDisable() {
 		log.info("[" + pdfFile.getName() + "]" + " version " + pdfFile.getVersion() + " disabled!");
@@ -65,7 +64,6 @@ public class bColoredChat extends JavaPlugin {
 		}
 		return false;
 	}
-		
 	
 	// onCommand
 	@Override
@@ -74,7 +72,7 @@ public class bColoredChat extends JavaPlugin {
 		String command = c.getName().toLowerCase();
 		String parameter;
 		String setplayer;
-		
+		log.info("command: " + command);
 		if(sender instanceof Player) {
 			Player player = (Player) sender;
 		    // use Color
@@ -104,6 +102,8 @@ public class bColoredChat extends JavaPlugin {
 		    }
 		    // clear Color
 		    else if(command.equals("clearcolor")) {
+		        log.info("in here 1");
+	               bChat.showColors(player);
 		    	if(args.length == 0) {
 		    		bConfigManager.clearPlayerChatColor(player, player.getName());
 		    		return true;
@@ -169,6 +169,11 @@ public class bColoredChat extends JavaPlugin {
                     return true;
                 }
                 return false;
+            }
+		    // show colors
+            else if(command.equals("showcolors")) {
+                bChat.showColors(player);
+                return true;
             }
 		    return false;
 		} else {

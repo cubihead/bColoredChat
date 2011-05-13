@@ -149,4 +149,26 @@ public class bChat {
             bChat.sendMessageToServer(message);
         }
     }
+    
+    public static void showColors(Player player) {
+        String message;
+        sendMessageToPlayer(player, "&6Colors: \"&e& + ColorCode&6 + Text\"");
+        sendMessageToPlayer(player, "&6ColorCodes:");
+        message = "&00 = Black           ||   &11 = Dark Blue";
+        sendMessageToPlayer(player, message);
+        message = "&22 = Dark Green   ||   &33 = Dark Aqua";
+        sendMessageToPlayer(player, message);
+        message = "&44 = Dark Red      ||   &55 = Purple";
+        sendMessageToPlayer(player, message);
+        message = "&66 = Gold            ||   &77 = Gray";
+        sendMessageToPlayer(player, message);
+        message = "&88 = Dark Gray     ||   &99 = Blue";
+        sendMessageToPlayer(player, message);
+        message = "&aa = Green          ||   &bb = Aqua";
+        sendMessageToPlayer(player, message);
+        message = "&cc = Red             ||   &dd = Pink";
+        sendMessageToPlayer(player, message);
+        message = "&ee = Yellow          ||   &ff = White";
+        sendMessageToPlayer(player, message);
+    }
 }

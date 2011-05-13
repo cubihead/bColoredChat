@@ -1,6 +1,6 @@
 name: bColoredChat
 main: com.beecub.bColoredChat.bColoredChat
-version: 2.0.0
+version: 2.1.0
 author: beecub
 description: >
              Chat Colors
@@ -8,7 +8,7 @@ commands:
   useColor:
     description: Set own chat color
     usage: |
-           /<command> [&black&|&darkblue&|&darkgreen&|&darkaqua&|&darkred&|&purple&|&gold&|&gray&|&darkgray&|&blue&|&green&|&aqua&|&red&|&pink&|&yellow&|&white&]
+           /<command> [ColorCode]
   setColor:
     description: Set player chat color
     usage: |
@@ -25,3 +25,7 @@ commands:
     description: rainbow text
     usage: |
            /<command> [text]
+  showColors:
+    description: Show available colors
+    usage: |
+           /<command>
