@@ -1,4 +1,4 @@
-package com.beecub.bColoredChat;
+package util;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 public class bChat {
     
     static Logger log = Logger.getLogger("Minecraft");
-    static List<String> Colors = new LinkedList<String>();
+    public static List<String> Colors = new LinkedList<String>();
     static Server server;
     
     @SuppressWarnings("static-access")
@@ -32,7 +32,7 @@ public class bChat {
         this.server = server;
     }
     
-    static String replaceColorCodes(String message) {
+    public static String replaceColorCodes(String message) {
         message = replaceTags(message);
         message = message.replaceAll("(&([a-f0-9]))", "\u00A7$2");
         if(message.contains("&random")) {
@@ -154,21 +154,21 @@ public class bChat {
         String message;
         sendMessageToPlayer(player, "&6Colors: \"&e& + ColorCode&6 + Text\"");
         sendMessageToPlayer(player, "&6ColorCodes:");
-        message = "&00 = Black           ||   &11 = Dark Blue";
+        message = "&00 = Black           &6||   &11 = Dark Blue";
         sendMessageToPlayer(player, message);
-        message = "&22 = Dark Green   ||   &33 = Dark Aqua";
+        message = "&22 = Dark Green   &6||   &33 = Dark Aqua";
         sendMessageToPlayer(player, message);
-        message = "&44 = Dark Red      ||   &55 = Purple";
+        message = "&44 = Dark Red      &6||   &55 = Purple";
         sendMessageToPlayer(player, message);
-        message = "&66 = Gold            ||   &77 = Gray";
+        message = "&66 = Gold            &6||   &77 = Gray";
         sendMessageToPlayer(player, message);
-        message = "&88 = Dark Gray     ||   &99 = Blue";
+        message = "&88 = Dark Gray     &6||   &99 = Blue";
         sendMessageToPlayer(player, message);
-        message = "&aa = Green          ||   &bb = Aqua";
+        message = "&aa = Green          &6||   &bb = Aqua";
         sendMessageToPlayer(player, message);
-        message = "&cc = Red             ||   &dd = Pink";
+        message = "&cc = Red             &6||   &dd = Pink";
         sendMessageToPlayer(player, message);
-        message = "&ee = Yellow          ||   &ff = White";
+        message = "&ee = Yellow          &6||   &ff = White";
         sendMessageToPlayer(player, message);
     }
 }

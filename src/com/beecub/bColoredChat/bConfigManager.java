@@ -6,6 +6,8 @@ import java.util.List;
 import org.bukkit.entity.Player;
 import org.bukkit.util.config.Configuration;
 
+import util.bChat;
+
 public class bConfigManager {
 	
 	protected static bColoredChat bColoredChat;
