@@ -30,8 +30,8 @@ public class bColoredChat extends JavaPlugin {
 
 		pdfFile = this.getDescription();
 		PluginManager pm = getServer().getPluginManager();
-		pm.registerEvent(Event.Type.PLAYER_CHAT, playerListener, Event.Priority.Lowest, this);
-	    pm.registerEvent(Event.Type.SIGN_CHANGE, signListener, Event.Priority.Lowest, this);
+		pm.registerEvent(Event.Type.PLAYER_CHAT, playerListener, Event.Priority.Highest, this);
+	    pm.registerEvent(Event.Type.SIGN_CHANGE, signListener, Event.Priority.Highest, this);
 	    
 		bConfigManager bConfigManager = new bConfigManager(this);
 		bConfigManager.load();
